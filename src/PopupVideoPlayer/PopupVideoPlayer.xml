@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<widget id="PopupVideoPlayer.widget.PopupVideoPlayer" needsEntityContext="true" xmlns="http://www.mendix.com/widget/1.0/">
+  <name>PopupVideoPlayer</name>
+  <description>The description of this widget.</description>
+
+  <icon></icon>
+
+  <properties>
+        <property key="videoIdAttr" type="attribute">
+            <caption>Video ID Attribute</caption>
+            <category>Appearance</category>
+            <description>The attribute containing the ID for the video.</description>
+            <attributeTypes>
+                <attributeType name="String"/>
+            </attributeTypes>
+        </property>
+	</properties>
+</widget>
+
