@@ -32,9 +32,16 @@ define([
 
         update : function (obj, callback) {
             this.videoId = obj.get(this.videoIdAttr);
-             
+			
+			var url = "";
+			
+			if (this.source == "youtube") {
+				url = "http://www.youtube.com/oembed?url=http%3A//www.youtube.com/watch?v%3"+this.videoId+"&format=json";
+			} else if (this.source == "vimeo") {
+				url = "https://vimeo.com/api/oembed.json?url=http%3A//vimeo.com/"+this.videoId;
+			}
             xhr.get({
-                url : 'https://vimeo.com/api/oembed.json?url=http%3A//vimeo.com/'+this.videoId,
+                url : url,
                 handleAs: 'json',
                 load : lang.hitch(this, this.showButton)
             });
@@ -43,13 +50,30 @@ define([
         },
         
         openPopup : function () {
-            //'<iframe src="//player.vimeo.com/video/VIDEO_ID" width="WIDTH" height="HEIGHT" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>'
+			var videoUrl = "";
             this.bgNode = domConstruct.create('div', { 'class' : 'popupVideoPlayer-bg'});
             this.containerNode = domConstruct.create('div', { 'class' : 'popupVideoPlayer-container'});
-            this.iframeNode = domConstruct.create('iframe', { 'class' : 'popupVideoPlayer-iframe', width : this.width, height : this.height, frameBorder: '0', webkitAllowFullscreen : true, allowFullscreen : true, mozAllowFullscreen : true });
-            this.iframeNode.src = '//player.vimeo.com/video/'+this.videoId;
-            //var iframe = domConstruct.create('<iframe class="popupVideoPlayer-iframe" src="//player.vimeo.com/video/'+videoId+'" width="400" height="400" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>');
-
+            this.iframeNode = domConstruct.create('iframe', {
+				 'class' : 'popupVideoPlayer-iframe',
+				 width : this.playerWidth,
+				 height : this.playerHeight,
+				 frameBorder: '0',
+				 webkitAllowFullscreen : true,
+				 allowFullscreen : true,
+				 mozAllowFullscreen : true
+			});
+            
+			if (this.source == "youtube") {
+				videoUrl = "//www.youtube.com/embed/"+this.videoId;
+			} else if (this.source == "vimeo") {
+				videoUrl = '//player.vimeo.com/video/'+this.videoId;
+			}
+			
+			if (this.autoPlay) {
+				videoUrl += "?autoplay=1";
+			}
+			
+			this.iframeNode.src = videoUrl;
             
             this.centerPopup(this.containerNode);
             this.connect(this.bgNode, 'click', lang.hitch(this, this.removePopup));
@@ -70,8 +94,8 @@ define([
         
         centerPopup : function (node) {
             domStyle.set(node, {
-                top : (window.innerHeight-this.height)/2+'px',
-                left : (window.innerWidth-this.width)/2+'px'
+                top : (window.innerHeight-this.playerHeight)/2+'px',
+                left : (window.innerWidth-this.playerWidth)/2+'px'
             });
         },
         

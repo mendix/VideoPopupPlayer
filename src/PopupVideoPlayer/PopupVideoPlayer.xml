@@ -8,11 +8,35 @@
   <properties>
         <property key="videoIdAttr" type="attribute">
             <caption>Video ID Attribute</caption>
-            <category>Appearance</category>
+            <category>Data source</category>
             <description>The attribute containing the ID for the video.</description>
             <attributeTypes>
                 <attributeType name="String"/>
             </attributeTypes>
+        </property>
+				<property key="playerWidth" type="integer" required="true" defaultValue="400">
+            <caption>Player width</caption>
+            <category>Appearance</category>
+            <description>The width of the popup player.</description>
+        </property>
+				<property key="playerHeight" type="integer" required="true" defaultValue="400">
+            <caption>Player height</caption>
+            <category>Appearance</category>
+            <description>The height of the popup player.</description>
+        </property>
+				<property key="autoPlay" type="boolean" defaultValue="false">
+            <caption>Autoplay</caption>
+            <category>General</category>
+            <description>Sets if the video autoplays when the popup opens.</description>
+        </property>
+				<property key="source" type="enumeration" defaultValue="vimeo">
+            <caption>Video source</caption>
+            <category>Data source</category>
+            <description>The source of the video.</description>
+            <enumerationValues>
+                <enumerationValue key="vimeo">Vimeo</enumerationValue>
+                <enumerationValue key="youtube">YouTube</enumerationValue>
+            </enumerationValues>
         </property>
 	</properties>
 </widget>
