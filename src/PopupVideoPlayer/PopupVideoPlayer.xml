@@ -3,7 +3,11 @@
   <name>PopupVideoPlayer</name>
   <description>The description of this widget.</description>
 
-  <icon></icon>
+  <icon>
+		
+iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAACkklEQVRIx5VVsWobQRBdnaSTEJKwQgjIGBVBpHIZ8g0hVaoQjIsgXJgUIRjjIrgxqYw/IHUKF8EYEVylSGVMUK3ClTHBBBdGBGGECUYo753fhvHpTqcsDLs38+bN7OzsrXMzRj6ff5LL5XawPMZ84vVaU7dDjPvfAac2pi5kDJlQQHZqApx6vTBd+WSPIAg6mEaG4DdkH/o3BsP1vmweN0LgzkxyALaNwwDf70qlUiUNTxsxxJqdbqeRdwx5D1te8rYwDB8h69fAfKBwTZ0pKbE9E+T+TlQ/X5ZesVisUl8oFBYBZiluTXAvt7QRQ6x8fJBR/EwOfb195pifYbpKII7LlbB+J/5cDn32j323IKP3yrxl6zqHDOTjxBF1V8TNmkoxRF2rAn2NEZyj7nS8TgsiHyeOoXTkdt8FOlAt/+3IyJlsS3A6SAkylq8T10Tc7lLRNpX9eoLzWawpnksX38W6ODalI/ddh0C5IuNeVgCOSqVSRtk+YvnHBNgTx4rvNBtgVcbdeQI0m81At95esl1xrNoAv2TcknEtKwA6Zhm444QSrYljSzpyu2/66OogW2mHXC6XqypD0sUby9eJaxJxm2iDer0eKoMv8QA42JeYf85oU/q4Wq0W+rJF3HBsYdHFttumBIu+u3x2GRft0v8y5N8mJ7nvHVyj0QiwzQW14jKmiwxiyoWwLO8COVzSQEc8xfQD0gfwgRweIpNPWN4kEN/QRoyw9OmTQ1xTAV4Z5779G+Jw67C/AOFbCtfUmYvXFnnkL67pocfD1/uaj4cvWdKgTQ+M/0eNxZE+FH1oSwE5IhEfEglJj2KlG6ZmHh/6r392yf0+9fAQa1/AuQedkO2Gsj13d6/eSGvuaiOL+C9tKipQ8FDx/AAAAABJRU5ErkJggg==
+
+	</icon>
 
   <properties>
         <property key="videoIdAttr" type="attribute">
