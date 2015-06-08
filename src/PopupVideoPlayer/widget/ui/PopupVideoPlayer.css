@@ -19,22 +19,34 @@
 
 .PopupVideoPlayer-button {
 	position: absolute;
-	width: 400px;
+	max-width: 420px;
 }
 
 .PopupVideoPlayer-text {
 	display: block;
 	float: left;
-	max-width: 250px;
+	max-width: 300px;
 	padding-left: 10px;
 }
 
+.PopupVideoPlayer-title {
+	float: left;
+}
+
 .PopupVideoPlayer-author {
-	display: block;
+	float: left;
+	display: inline;
 }
 
 .PopupVideoPlayer-thumbnail {
 	float: left;
 	width: 120px;
 	height: 90px;
+}
+
+.PopupVideoPlayer-by {
+	clear: left;
+	float: left;
+	margin-right: 5px;
+	display: none;
 }

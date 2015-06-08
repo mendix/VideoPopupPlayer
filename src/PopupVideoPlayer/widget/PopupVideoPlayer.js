@@ -18,6 +18,7 @@ define([
 		textNode : null,
 		titleNode : null,
 		authorNode : null,
+		byNode : null,
         
         bgNode : null,
         containerNode : null,
@@ -68,8 +69,12 @@ define([
             callback();
         },
         
-        openPopup : function () {
+        openPopup : function (evt) {
 			this.resetJsonp();
+			
+			if (evt.target.nodeName === "A") {
+				return;
+			}
 			
 			var videoUrl = "";
             this.bgNode = domConstruct.create('div', { 'class' : 'popupVideoPlayer-bg'});
@@ -106,11 +111,11 @@ define([
         
         showButton : function (data) {
             html.set(this.titleNode, data.title);
-			html.set(this.authorNode, "By: "+data.author_name);
+			html.set(this.authorNode, data.author_name);
 			this.authorNode.href = data.author_url;
 			this.thumbnailNode.src = data.thumbnail_url;
-			this.connect(this.titleNode, 'click', lang.hitch(this, this.openPopup));
-			this.connect(this.thumbnailNode, 'click', lang.hitch(this, this.openPopup));
+			domStyle.set(this.byNode, 'display', 'block');
+			this.connect(this.buttonNode, 'click', lang.hitch(this, this.openPopup));
         },
         
         centerPopup : function (node) {
