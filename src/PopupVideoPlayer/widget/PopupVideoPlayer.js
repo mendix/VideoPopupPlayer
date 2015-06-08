@@ -25,6 +25,7 @@ define([
         width : '400',
         height : '400',
         videoId : '',
+		jsonpcb : null,
         
         startup : function () {
             
@@ -34,22 +35,37 @@ define([
             this.videoId = obj.get(this.videoIdAttr);
 			
 			var url = "";
+			var cb = this.id+"oembedcb";
+			
+			this.resetJsonp();
+			
+			this.jsonpcb = window[cb] = lang.hitch(this, function (data) {
+				this.showButton(data);
+			});
 			
 			if (this.source == "youtube") {
-				url = "http://www.youtube.com/oembed?url=http%3A//www.youtube.com/watch?v%3"+this.videoId+"&format=json";
+				// RvH: Youtube doesn't work with GET because of CORS and does not support jsonp callbacks. Luckily the noembed wrapper does.
+				url = "https://noembed.com/embed?url=http%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D"+this.videoId+"&callback="+cb;
 			} else if (this.source == "vimeo") {
 				url = "https://vimeo.com/api/oembed.json?url=http%3A//vimeo.com/"+this.videoId;
 			}
             xhr.get({
                 url : url,
                 handleAs: 'json',
-                load : lang.hitch(this, this.showButton)
+				headers : {
+					// Dojo by default tries to do a preflighted request, this runs into CORS so we disable this.
+					"X-Requested-With": null
+				},
+                load : lang.hitch(this, this.showButton),
+				error : lang.hitch(this, this.resetJsonp)
             });
             
             callback();
         },
         
         openPopup : function () {
+			this.resetJsonp();
+			
 			var videoUrl = "";
             this.bgNode = domConstruct.create('div', { 'class' : 'popupVideoPlayer-bg'});
             this.containerNode = domConstruct.create('div', { 'class' : 'popupVideoPlayer-container'});
@@ -98,6 +114,11 @@ define([
                 left : (window.innerWidth-this.playerWidth)/2+'px'
             });
         },
+		
+		resetJsonp : function () {
+			if (this.jsonpcb)
+				delete this.jsonpcb;
+		},
         
         removePopup : function () {
             domConstruct.destroy(this.iframeNode);
@@ -106,6 +127,7 @@ define([
         },
         
         uninitialize : function () {
+			this.resetJsonp();
             this.removePopup();
         }
 
