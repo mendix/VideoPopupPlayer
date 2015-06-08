@@ -41,6 +41,14 @@
 
 .PopupVideoPlayer-title {
 	float: left;
+	color: #333;
+	font-size: 13px;
+	font-weight: bold;
+}
+
+.PopupVideoPlayer-title:hover {
+	text-decoration: underline;
+	color: #167ac6;
 }
 
 .PopupVideoPlayer-author {
@@ -52,6 +60,11 @@
 	float: left;
 	width: 120px;
 	height: 90px;
+}
+
+.PopupVideoPlayer-byWrapper {
+	color: #767676;
+	font-size: 11px;
 }
 
 .PopupVideoPlayer-by {
