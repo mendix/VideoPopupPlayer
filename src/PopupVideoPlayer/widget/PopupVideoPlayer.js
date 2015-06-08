@@ -23,8 +23,6 @@ define([
         bgNode : null,
         containerNode : null,
         iframeNode : null,
-        width : '400',
-        height : '400',
         videoId : '',
 		jsonpcb : null,
         
