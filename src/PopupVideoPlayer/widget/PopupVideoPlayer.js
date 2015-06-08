@@ -46,16 +46,16 @@ define([
 			
 			this.resetJsonp();
 			
-			this.jsonpcb = window[cb] = lang.hitch(this, function (data) {
-				this.showButton(data);
-			});
-			
-			if (this.source == "youtube") {
+			if (this.source === "youtube") {
+				this.jsonpcb = window[cb] = lang.hitch(this, function (data) {
+					this.showButton(data);
+				});
 				// RvH: Youtube doesn't work with GET because of CORS and does not support jsonp callbacks. Luckily the noembed wrapper does.
 				url = "https://noembed.com/embed?url=http%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D"+this.videoId+"&callback="+cb;
-			} else if (this.source == "vimeo") {
+			} else if (this.source === "vimeo") {
 				url = "https://vimeo.com/api/oembed.json?url=http%3A//vimeo.com/"+this.videoId;
 			}
+			
             xhr.get({
                 url : url,
                 handleAs: 'json',
