@@ -32,6 +32,11 @@ define([
         },
 
         update : function (obj, callback) {
+			if (!obj) {
+				callback();
+				return;
+			}
+			
             this.videoId = obj.get(this.videoIdAttr);
 			
 			var url = "";
