@@ -20,6 +20,7 @@
 .PopupVideoPlayer-button {
 	position: absolute;
 	max-width: 420px;
+	display: none;
 }
 
 .PopupVideoPlayer-text {

@@ -34,6 +34,7 @@ define([
 
         update : function (obj, callback) {
 			if (!obj) {
+				domStyle.set(this.buttonNode, 'display', 'none');
 				callback();
 				return;
 			}
@@ -114,7 +115,11 @@ define([
 			html.set(this.authorNode, data.author_name);
 			this.authorNode.href = data.author_url;
 			this.thumbnailNode.src = data.thumbnail_url;
-			domStyle.set(this.byNode, 'display', 'block');
+			
+			if (data.author_name != "")
+				domStyle.set(this.byNode, 'display', 'block');
+				
+			domStyle.set(this.buttonNode, 'display', 'block');
 			this.connect(this.buttonNode, 'click', lang.hitch(this, this.openPopup));
         },
         
