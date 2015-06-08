@@ -1,3 +1,4 @@
+/* Popup styling */
 .popupVideoPlayer-container {
     position: fixed;
     z-index: 9000;
@@ -17,10 +18,18 @@
     background-color: rgba(0, 0, 0, 0.35);
 }
 
+/* End of popup styling */
+
+.PopupVideoPlayer-wrapper {
+	height: 90px;
+	margin-bottom: 10px;
+}
+
 .PopupVideoPlayer-button {
 	position: absolute;
 	max-width: 420px;
 	display: none;
+	cursor: pointer;
 }
 
 .PopupVideoPlayer-text {
