@@ -18,12 +18,12 @@ iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAACkklEQVRIx5VVsWobQRBdnaSTEJKwQgjI
                 <attributeType name="String"/>
             </attributeTypes>
         </property>
-				<property key="playerWidth" type="integer" required="true" defaultValue="400">
+				<property key="playerWidth" type="integer" required="true" defaultValue="640">
             <caption>Player width</caption>
             <category>Appearance</category>
             <description>The width of the popup player.</description>
         </property>
-				<property key="playerHeight" type="integer" required="true" defaultValue="400">
+				<property key="playerHeight" type="integer" required="true" defaultValue="360">
             <caption>Player height</caption>
             <category>Appearance</category>
             <description>The height of the popup player.</description>
