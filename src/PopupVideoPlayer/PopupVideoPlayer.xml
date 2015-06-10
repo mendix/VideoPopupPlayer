@@ -33,13 +33,13 @@ iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAACkklEQVRIx5VVsWobQRBdnaSTEJKwQgjI
             <category>General</category>
             <description>Sets if the video autoplays when the popup opens.</description>
         </property>
-				<property key="source" type="enumeration" defaultValue="vimeo">
+				<property key="source" type="enumeration" defaultValue="youtube">
             <caption>Video source</caption>
             <category>Data source</category>
             <description>The source of the video.</description>
             <enumerationValues>
-                <enumerationValue key="vimeo">Vimeo</enumerationValue>
                 <enumerationValue key="youtube">YouTube</enumerationValue>
+                <enumerationValue key="vimeo">Vimeo</enumerationValue>
             </enumerationValues>
         </property>
 	</properties>
