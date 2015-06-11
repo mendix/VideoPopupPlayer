@@ -26,6 +26,7 @@ define([
         videoId : '',
 		jsonpcb : null,
 		buttonClickHandler : null,
+		objectId : null,
         
         startup : function () {
             
@@ -38,6 +39,7 @@ define([
 				return;
 			}
 			
+			this.objectId = obj.getGuid();
             this.videoId = obj.get(this.videoIdAttr);
 			
 			var url = "";
@@ -110,6 +112,8 @@ define([
             domConstruct.place(this.iframeNode, this.containerNode);
             domConstruct.place(this.bgNode, document.body);
             domConstruct.place(this.containerNode, document.body);
+			
+			this.executeMf();
         },
         
         showButton : function (data) {
@@ -126,6 +130,22 @@ define([
 			domStyle.set(this.buttonNode, 'display', 'block');
 			this.buttonClickHandler = this.connect(this.buttonNode, 'click', lang.hitch(this, this.openPopup));
         },
+		
+		executeMf : function () {
+			if (this.mf && this.objectId != null) {
+				mx.data.action({
+		            params: {
+		                applyto: "selection",
+		                actionname: this.mf,
+		                guids: [this.objectId]
+		            },
+		            callback: function () {},
+		            error: function (error) {
+		                console.warn('Error executing mf: ', error);
+		            }
+		        });
+			}
+		},
         
         centerPopup : function (node) {
             domStyle.set(node, {
