@@ -12,19 +12,19 @@ iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAACkklEQVRIx5VVsWobQRBdnaSTEJKwQgjI
   <properties>
         <property key="videoIdAttr" type="attribute">
             <caption>Video ID Attribute</caption>
-            <category>Data source</category>
+            <category>Data Source</category>
             <description>The attribute containing the ID for the video.</description>
             <attributeTypes>
                 <attributeType name="String"/>
             </attributeTypes>
         </property>
 				<property key="playerWidth" type="integer" required="true" defaultValue="640">
-            <caption>Player width</caption>
+            <caption>Player Width</caption>
             <category>Appearance</category>
             <description>The width of the popup player.</description>
         </property>
 				<property key="playerHeight" type="integer" required="true" defaultValue="360">
-            <caption>Player height</caption>
+            <caption>Player Height</caption>
             <category>Appearance</category>
             <description>The height of the popup player.</description>
         </property>
@@ -34,8 +34,8 @@ iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAACkklEQVRIx5VVsWobQRBdnaSTEJKwQgjI
             <description>Sets if the video autoplays when the popup opens.</description>
         </property>
 				<property key="source" type="enumeration" defaultValue="youtube">
-            <caption>Video source</caption>
-            <category>Data source</category>
+            <caption>Video Source</caption>
+            <category>Data Source</category>
             <description>The source of the video.</description>
             <enumerationValues>
                 <enumerationValue key="youtube">YouTube</enumerationValue>
@@ -43,7 +43,7 @@ iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAACkklEQVRIx5VVsWobQRBdnaSTEJKwQgjI
             </enumerationValues>
         </property>
 				<property key="mf" type="microflow" required="false">
-            <caption>On click microflow</caption>
+            <caption>On Click Microflow</caption>
             <category>Behavior</category>
             <description>The microflow that is executed when the popup is shown.</description>
             <returnType type="Void" />
