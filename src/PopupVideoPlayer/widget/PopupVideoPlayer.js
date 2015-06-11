@@ -4,9 +4,9 @@
 
 define([
     'dojo/_base/declare', 'mxui/widget/_WidgetBase', 'dijit/_TemplatedMixin',
-    'mxui/dom', 'dojo/dom', 'dojo/query', 'dojo/dom-prop', 'dojo/dom-geometry', 'dojo/dom-class', 'dojo/dom-style', 'dojo/dom-construct', 'dojo/_base/array', 'dojo/_base/lang', 'dojo/text', 'dojo/html', 'dojo/_base/event', 'dojo/_base/xhr',
+    'mxui/dom', 'dojo/dom-style', 'dojo/dom-construct', 'dojo/_base/lang', 'dojo/text', 'dojo/html', 'dojo/_base/xhr',
     'dojo/text!PopupVideoPlayer/widget/template/PopupVideoPlayer.html'
-], function (declare, _WidgetBase, _TemplatedMixin, dom, dojoDom, domQuery, domProp, domGeom, domClass, domStyle, domConstruct, dojoArray, lang, text, html, event, xhr, widgetTemplate) {
+], function (declare, _WidgetBase, _TemplatedMixin, dom, domStyle, domConstruct, lang, text, html, xhr, widgetTemplate) {
     'use strict';
 
     return declare('PopupVideoPlayer.widget.PopupVideoPlayer', [_WidgetBase, _TemplatedMixin], {
@@ -25,6 +25,7 @@ define([
         iframeNode : null,
         videoId : '',
 		jsonpcb : null,
+		buttonClickHandler : null,
         
         startup : function () {
             
@@ -61,7 +62,10 @@ define([
 					// Dojo by default tries to do a preflighted request, this runs into CORS so we disable this.
 					"X-Requested-With": null
 				},
-                load : lang.hitch(this, this.showButton),
+                load : lang.hitch(this, function (data) {
+					if (this.source === 'vimeo')
+						this.showButton(data);
+				}),
 				error : lang.hitch(this, this.resetJsonp)
             });
             
@@ -109,6 +113,8 @@ define([
         },
         
         showButton : function (data) {
+			this.resetClickHandler();
+			
             html.set(this.titleNode, data.title);
 			html.set(this.authorNode, data.author_name);
 			this.authorNode.href = data.author_url;
@@ -118,7 +124,7 @@ define([
 				domStyle.set(this.byNode, 'display', 'block');
 				
 			domStyle.set(this.buttonNode, 'display', 'block');
-			this.connect(this.buttonNode, 'click', lang.hitch(this, this.openPopup));
+			this.buttonClickHandler = this.connect(this.buttonNode, 'click', lang.hitch(this, this.openPopup));
         },
         
         centerPopup : function (node) {
@@ -138,10 +144,18 @@ define([
             domConstruct.destroy(this.bgNode);
             domConstruct.destroy(this.containerNode);
         },
+		
+		resetClickHandler : function () {
+			if (this.buttonClickHandler) {
+				this.disconnect(this.buttonClickHandler);
+				this.buttonClickHandler = null;
+			}
+		},
         
         uninitialize : function () {
 			this.resetJsonp();
             this.removePopup();
+			this.resetClickHandler();
         }
 
     });
