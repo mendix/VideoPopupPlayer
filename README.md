@@ -32,6 +32,14 @@ The width of the popup.
 #### Player height
 The height of the popup.
 
+### Responsive
+
+#### Responsive Fullscreen
+If you set this to true, the player will determine the width and height of the player, instead of using the Player width and height as set in 'Appearance'. **Default: false**
+
+#### Max width percentage
+If you use the Responsive Fullscreen option, this will determine what the max width/height is of the player. It will center the video and scale it to the window width/height, multiplied by the percentage. **Default: 90**
+
 ### Behavior
 
 #### On Click Microflow
