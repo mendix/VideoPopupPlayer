@@ -1,8 +1,8 @@
 define([
     "dojo/_base/declare", "mxui/widget/_WidgetBase", "dijit/_TemplatedMixin",
-    "mxui/dom", "dojo/dom-style", "dojo/dom-construct", "dojo/_base/lang", "dojo/text", "dojo/html", "dojo/_base/xhr",
+    "mxui/dom", "dojo/dom-style", "dojo/dom-construct", "dojo/_base/lang", "dojo/text", "dojo/html", "dojo/_base/xhr", "dojo/window",
     "dojo/text!PopupVideoPlayer/widget/template/PopupVideoPlayer.html"
-], function (declare, _WidgetBase, _TemplatedMixin, dom, domStyle, domConstruct, lang, text, html, xhr, widgetTemplate) {
+], function (declare, _WidgetBase, _TemplatedMixin, dom, domStyle, domConstruct, lang, text, html, xhr, win, widgetTemplate) {
     "use strict";
 
     return declare("PopupVideoPlayer.widget.PopupVideoPlayer", [_WidgetBase, _TemplatedMixin], {
@@ -23,6 +23,8 @@ define([
         jsonpcb : null,
         buttonClickHandler : null,
         objectId : null,
+
+        _aspectRatio: null,
 
         update : function (obj, callback) {
             logger.debug(this.id + ".update");
@@ -76,7 +78,30 @@ define([
                 return;
             }
 
-            var videoUrl = "";
+            var videoUrl = "",
+                vs = win.getBox();
+
+            if (this.playerResponsivePercentage < 10) {
+                this.playerResponsivePercentage = 10;
+            } else if (this.playerResponsivePercentage > 100) {
+                this.playerResponsivePercentage = 100;
+            }
+
+            if (this.playerResponsive) {
+                var percentage = this.playerResponsivePercentage / 100,
+                    windowWidth = Math.round(percentage * vs.w),
+                    playerHeight = Math.round(windowWidth / this._aspectRatio),
+                    windowHeight = Math.round(percentage * vs.h);
+
+                if (playerHeight > windowHeight) {
+                    this.playerHeight = windowHeight;
+                    this.playerWidth = Math.round(windowHeight * this._aspectRatio);
+                } else {
+                    this.playerHeight = playerHeight;
+                    this.playerWidth = Math.round(playerHeight * this._aspectRatio);
+                }
+            }
+
             this.bgNode = domConstruct.create("div", { "class" : "popupVideoPlayer-bg" });
             this.containerNode = domConstruct.create("div", { "class" : "popupVideoPlayer-container"});
             this.iframeNode = domConstruct.create("iframe", {
@@ -116,6 +141,8 @@ define([
         showButton : function (data) {
             logger.debug(this.id + ".showButton");
             this.resetClickHandler();
+
+            this._aspectRatio = data.width / data.height;
 
             html.set(this.titleNode, data.title);
             html.set(this.authorNode, data.author_name);
@@ -189,6 +216,7 @@ define([
 
     });
 });
+
 require(["PopupVideoPlayer/widget/PopupVideoPlayer"], function () {
     "use strict";
 });

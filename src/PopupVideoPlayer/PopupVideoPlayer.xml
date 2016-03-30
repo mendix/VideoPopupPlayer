@@ -22,6 +22,16 @@
             <category>Appearance</category>
             <description>The height of the popup player.</description>
         </property>
+        <property key="playerResponsive" type="boolean" required="true" defaultValue="false">
+            <caption>Responsive Fullscreen</caption>
+            <category>Responsive</category>
+            <description>You might want to show the video completely fullscreen, without a fixed width and height. Setting this to 'true' will ignore the settings in the 'Appearance' tab</description>
+        </property>
+        <property key="playerResponsivePercentage" type="integer" required="true" defaultValue="90">
+            <caption>Max width percentage</caption>
+            <category>Responsive</category>
+            <description>Set this between 10 and 100. This will set the max width/height percentage of the player when using Responsive Fullscreen.</description>
+        </property>
         <property key="autoPlay" type="boolean" defaultValue="false">
             <caption>Autoplay</caption>
             <category>General</category>
