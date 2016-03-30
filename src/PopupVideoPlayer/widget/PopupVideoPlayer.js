@@ -89,10 +89,12 @@ define([
                  mozAllowFullscreen : true
             });
 
+            // We set the protocol to https by default
+            var protocol = "https:";
             if (this.source === "youtube") {
-                videoUrl = "//www.youtube.com/embed/" + this.videoId;
+                videoUrl = protocol + "//www.youtube.com/embed/" + this.videoId;
             } else if (this.source === "vimeo") {
-                videoUrl = "//player.vimeo.com/video/" + this.videoId;
+                videoUrl = protocol + "//player.vimeo.com/video/" + this.videoId;
             }
 
             if (this.autoPlay) {
