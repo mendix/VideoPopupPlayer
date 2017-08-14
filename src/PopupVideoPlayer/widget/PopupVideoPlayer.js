@@ -1,6 +1,15 @@
 define([
-    "dojo/_base/declare", "mxui/widget/_WidgetBase", "dijit/_TemplatedMixin",
-    "mxui/dom", "dojo/dom-style", "dojo/dom-construct", "dojo/_base/lang", "dojo/text", "dojo/html", "dojo/_base/xhr", "dojo/window",
+    "dojo/_base/declare",
+    "mxui/widget/_WidgetBase",
+    "dijit/_TemplatedMixin",
+    "mxui/dom",
+    "dojo/dom-style",
+    "dojo/dom-construct",
+    "dojo/_base/lang",
+    "dojo/text",
+    "dojo/html",
+    "dojo/_base/xhr",
+    "dojo/window",
     "dojo/text!PopupVideoPlayer/widget/template/PopupVideoPlayer.html"
 ], function (declare, _WidgetBase, _TemplatedMixin, dom, domStyle, domConstruct, lang, text, html, xhr, win, widgetTemplate) {
     "use strict";
@@ -64,7 +73,10 @@ define([
                         this.showButton(data);
                     }
                 }),
-                error : lang.hitch(this, this.resetJsonp)
+                error : lang.hitch(this, function () {
+                    this.resetJsonp();
+                    this.showError();
+                })
             });
 
             callback();
@@ -154,6 +166,7 @@ define([
             }
 
             domStyle.set(this.buttonNode, "display", "block");
+            domStyle.set(this.errorNode, "display", "none");
             this.buttonClickHandler = this.connect(this.buttonNode, "click", lang.hitch(this, this.openPopup));
         },
 
@@ -192,6 +205,11 @@ define([
             }
         },
 
+        showError: function () {
+            domStyle.set(this.buttonNode, "display", "none");
+            domStyle.set(this.errorNode, "display", "block");
+        },
+
         removePopup : function () {
             logger.debug(this.id + ".removePopup");
             domConstruct.destroy(this.iframeNode);
@@ -217,6 +235,4 @@ define([
     });
 });
 
-require(["PopupVideoPlayer/widget/PopupVideoPlayer"], function () {
-    "use strict";
-});
+require(["PopupVideoPlayer/widget/PopupVideoPlayer"]);

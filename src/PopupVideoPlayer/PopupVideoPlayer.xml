@@ -22,6 +22,15 @@
             <category>Appearance</category>
             <description>The height of the popup player.</description>
         </property>
+        <property key="errorMessage" type="translatableString" required="false">
+            <caption>Error message</caption>
+            <category>Appearance</category>
+            <description>Error message when the video cannot be loaded</description>
+            <translations>
+                <translation lang="en_US">Cannot load video</translation>
+                <translation lang="nl_NL">Kan video niet laden</translation>
+            </translations>
+        </property>
         <property key="playerResponsive" type="boolean" required="true" defaultValue="false">
             <caption>Responsive Fullscreen</caption>
             <category>Responsive</category>

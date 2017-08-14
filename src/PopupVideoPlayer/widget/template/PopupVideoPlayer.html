@@ -1,9 +1,14 @@
 <div class="PopupVideoPlayer-wrapper">
-	<div data-dojo-attach-point="buttonNode" class="PopupVideoPlayer-button">
-	    <img data-dojo-attach-point="thumbnailNode" class="PopupVideoPlayer-thumbnail"" src="" alt="">
-	    <div data-dojo-attach-point="textNode" class="PopupVideoPlayer-text">
-			<span data-dojo-attach-point="titleNode" class="PopupVideoPlayer-title"></span>
-			<div class="PopupVideoPlayer-byWrapper"><span data-dojo-attach-point="byNode" class="PopupVideoPlayer-by">By: </span><a target="_blank" data-dojo-attach-point="authorNode" class="PopupVideoPlayer-author"></a></div>
-		</div>
-	</div>
+    <div data-dojo-attach-point="buttonNode" class="PopupVideoPlayer-button">
+        <img data-dojo-attach-point="thumbnailNode" class="PopupVideoPlayer-thumbnail" src="" alt="">
+        <div data-dojo-attach-point="textNode" class="PopupVideoPlayer-text">
+            <span data-dojo-attach-point="titleNode" class="PopupVideoPlayer-title"></span>
+            <div class="PopupVideoPlayer-byWrapper">
+                <span data-dojo-attach-point="byNode" class="PopupVideoPlayer-by">By: </span><a target="_blank" data-dojo-attach-point="authorNode" class="PopupVideoPlayer-author"></a>
+            </div>
+        </div>
+    </div>
+    <div data-dojo-attach-point="errorNode" class="PopupVideoPlayer-error">
+        <span class="PopupVideoPlayer-error-text">${errorMessage}</span>
+    </div>
 </div>

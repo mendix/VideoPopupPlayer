@@ -1,4 +1,5 @@
 /* Popup styling */
+
 .popupVideoPlayer-container {
     position: fixed;
     z-index: 9000;
@@ -18,58 +19,63 @@
     background-color: rgba(0, 0, 0, 0.35);
 }
 
+
 /* End of popup styling */
 
 .PopupVideoPlayer-wrapper {
-	height: 90px;
-	margin-bottom: 10px;
+    height: 90px;
+    margin-bottom: 10px;
 }
 
 .PopupVideoPlayer-button {
-	position: absolute;
-	max-width: 420px;
-	display: none;
-	cursor: pointer;
+    position: absolute;
+    max-width: 420px;
+    display: none;
+    cursor: pointer;
 }
 
 .PopupVideoPlayer-text {
-	display: block;
-	float: left;
-	max-width: 300px;
-	padding-left: 10px;
+    display: block;
+    float: left;
+    max-width: 300px;
+    padding-left: 10px;
 }
 
 .PopupVideoPlayer-title {
-	float: left;
-	color: #333;
-	font-size: 13px;
-	font-weight: bold;
+    float: left;
+    color: #333;
+    font-size: 13px;
+    font-weight: bold;
 }
 
 .PopupVideoPlayer-title:hover {
-	text-decoration: underline;
-	color: #167ac6;
+    text-decoration: underline;
+    color: #167ac6;
 }
 
 .PopupVideoPlayer-author {
-	float: left;
-	display: inline;
+    float: left;
+    display: inline;
 }
 
 .PopupVideoPlayer-thumbnail {
-	float: left;
-	width: 120px;
-	height: 90px;
+    float: left;
+    width: 120px;
+    height: 90px;
 }
 
 .PopupVideoPlayer-byWrapper {
-	color: #767676;
-	font-size: 11px;
+    color: #767676;
+    font-size: 11px;
 }
 
 .PopupVideoPlayer-by {
-	clear: left;
-	float: left;
-	margin-right: 5px;
-	display: none;
+    clear: left;
+    float: left;
+    margin-right: 5px;
+    display: none;
+}
+
+.PopupVideoPlayer-error {
+    display: none;
 }
