@@ -1,4 +1,4 @@
-# Popup Video Player
+# Popup Video Player [![Support](https://img.shields.io/badge/Mendix%20Support%3A-Community-orange.svg)](https://docs.mendix.com/community/app-store/app-store-content-support)
 
 This widget shows a small preview thumbnail and title for a YouTube or Vimeo video.
 When clicked, it will open the video in a popup.
