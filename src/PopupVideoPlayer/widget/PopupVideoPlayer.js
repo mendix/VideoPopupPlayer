@@ -35,8 +35,20 @@ define([
 
         _aspectRatio: null,
 
+        log() {
+            var args = Array.prototype.slice.call(arguments);
+            if (this.id) {
+                args.unshift(this.id);
+            }
+            if (mx && mx.logger && mx.logger.debug) {
+                mx.logger.debug.apply(mx.logger, args);
+            } else {
+                logger.debug.apply(logger, args);
+            }
+        },
+
         update : function (obj, callback) {
-            logger.debug(this.id + ".update");
+            this.log(".update");
             if (!obj) {
                 domStyle.set(this.buttonNode, "display", "none");
                 callback();
@@ -83,7 +95,7 @@ define([
         },
 
         openPopup : function (evt) {
-            logger.debug(this.id + ".openPopup");
+            this.log(".openPopup");
             this.resetJsonp();
 
             if (evt.target.nodeName === "A") {
@@ -151,7 +163,7 @@ define([
         },
 
         showButton : function (data) {
-            logger.debug(this.id + ".showButton");
+            this.log(".showButton");
             this.resetClickHandler();
 
             this._aspectRatio = data.width / data.height;
@@ -171,7 +183,7 @@ define([
         },
 
         executeMf : function () {
-            logger.debug(this.id + ".executeMf");
+            this.log(".executeMf");
             if (this.mf && this.objectId !== null) {
                 mx.data.action({
                     params: {
@@ -188,7 +200,7 @@ define([
         },
 
         centerPopup : function (node) {
-            logger.debug(this.id + ".centerPopup");
+            this.log(".centerPopup");
             domStyle.set(node, {
                 top : (window.innerHeight-this.playerHeight) / 2 + "px",
                 left : (window.innerWidth-this.playerWidth) / 2 + "px"
@@ -196,7 +208,7 @@ define([
         },
 
         resetJsonp : function (err) {
-            logger.debug(this.id + ".resetJsonp");
+            this.log(".resetJsonp");
             if (err) {
                 console.error(this.id + ".resetJsonp error:", err);
             }
@@ -211,14 +223,14 @@ define([
         },
 
         removePopup : function () {
-            logger.debug(this.id + ".removePopup");
+            this.log(".removePopup");
             domConstruct.destroy(this.iframeNode);
             domConstruct.destroy(this.bgNode);
             domConstruct.destroy(this.containerNode);
         },
 
         resetClickHandler : function () {
-            logger.debug(this.id + ".resetClickHandler");
+            this.log(".resetClickHandler");
             if (this.buttonClickHandler) {
                 this.disconnect(this.buttonClickHandler);
                 this.buttonClickHandler = null;
@@ -226,7 +238,7 @@ define([
         },
 
         uninitialize : function () {
-            logger.debug(this.id + ".uninitialize");
+            this.log(".uninitialize");
             this.resetJsonp();
             this.removePopup();
             this.resetClickHandler();
