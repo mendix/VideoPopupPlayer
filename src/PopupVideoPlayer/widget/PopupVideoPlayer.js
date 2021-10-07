@@ -35,7 +35,7 @@ define([
 
         _aspectRatio: null,
 
-        log() {
+        log: function() {
             var args = Array.prototype.slice.call(arguments);
             if (this.id) {
                 args.unshift(this.id);
